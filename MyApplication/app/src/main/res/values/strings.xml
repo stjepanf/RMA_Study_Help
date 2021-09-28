@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Study Help</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="spremi_novu_lokaciju">Spremi novu lokaciju</string>
+    <string name="naziv">Naziv:</string>
+    <string name="adresa">Adresa:</string>
+    <string name="telefon">Telefon:</string>
+    <string name="email">Email:</string>
+    <string name="url">Web lokacija:</string>
+    <string name="radno_vrijeme">Radno vrijeme:</string>
+    <string name="college_fakultet">College/Fakultet</string>
+    <string name="library_knji_nica">Library/Knjižnica</string>
+    <string name="student_restaurant_menza">Student restaurant/Menza</string>
+    <string name="copier_skripta">Copier/Skripta</string>
+    <string name="spremi_adresu">Spremi Adresu</string>
+    <string name="odaberi_lokaciju">Odaberi lokaciju za adresu</string>
+    <string name="dodaj_novu_lokaciju">Dodaj novu lokaciju</string>
+    <string name="upute_do_lokacije">Upute do lokacije</string>
 </resources>

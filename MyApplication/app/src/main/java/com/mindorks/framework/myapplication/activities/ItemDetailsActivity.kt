@@ -1,7 +1,6 @@
 package com.mindorks.framework.myapplication.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.mindorks.framework.myapplication.*
 import com.mindorks.framework.myapplication.models.*
@@ -12,9 +11,10 @@ import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_item_details.*
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Paint
 import android.net.Uri
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
+import android.text.Html
+import androidx.appcompat.app.AppCompatActivity
 
 
 class ItemDetailsActivity : AppCompatActivity() {
@@ -45,6 +45,7 @@ class ItemDetailsActivity : AppCompatActivity() {
             tvEmail.visibility = View.GONE
         else
             tvEmail.visibility = View.VISIBLE
+        tvEmail.paintFlags = tvEmail.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         tvEmail.text = email
 
         if (url.isEmpty())
@@ -60,16 +61,31 @@ class ItemDetailsActivity : AppCompatActivity() {
         tvWorkTimeInfo.text = workTimeInfo
 
         maps.setOnClickListener {
-            val mapUri: Uri = Uri.parse("geo:0,0?q=" + Uri.encode(address))
-            val mapIntent = Intent(Intent.ACTION_VIEW, mapUri)
-            mapIntent.setPackage("com.google.android.apps.maps")
-            startActivity(mapIntent)
+            loader.visibility = View.VISIBLE
+            val addressIntent = Intent(this, MapsActivity::class.java)
+            addressIntent.putExtra(EXTRA_TITLE, name)
+            addressIntent.putExtra(EXTRA_ADDRESS, address)
+            addressIntent.putExtra(SHOW_MARKER, true)
+            startActivity(addressIntent)
+        }
+
+        tvEmail.setOnClickListener {
+            val emailIntent = Intent(Intent.ACTION_SEND)
+            emailIntent.type = "plain/text"
+            emailIntent.data = Uri.parse("mailto:$email")
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+            startActivity(Intent.createChooser(emailIntent, "Pošalji email"))
         }
 
         tel.setOnClickListener {
                 val phoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$telephone"))
                 startActivity(phoneIntent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loader.visibility = View.GONE
     }
 
     //get data from realm by type and id

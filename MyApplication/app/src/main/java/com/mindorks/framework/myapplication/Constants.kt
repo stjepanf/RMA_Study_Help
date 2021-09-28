@@ -12,3 +12,7 @@ const val LIBRARY = "LIBRARY"
 
 const val EXTRA_TYPE = "EXTRA_TYPE"
 const val EXTRA_ID = "EXTRA_ID"
+const val EXTRA_ADDRESS = "EXTRA_ADDRESS"
+const val EXTRA_TITLE = "EXTRA_TITLE"
+const val SHOW_MARKER = "SHOW_MARKER"
+const val SELECT_ADDRESS = "SELECT_ADDRESS"
